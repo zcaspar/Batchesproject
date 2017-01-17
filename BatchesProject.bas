@@ -6,7 +6,7 @@ Dim myarray(1 To 1000, 1 To 1000) As Variant
 Dim d As Integer 'this is the no of columns along Number can be found
 Dim e As Integer 'this is the no of rows down Number can be found (i.e. header line)
 Dim f As Integer 'this is the no of columns along Delivery can be found
-Sub comparebatchtooverall()
+Sub copyoverall()
 Call Test_If_File_Is_Open
 Call Sheet_Test
 Call countnumbersincolumna
@@ -20,6 +20,76 @@ Call pastearrayintooverall
 Range("a1").Select
 Call fandrtosap
 Call datasort
+End Sub
+Sub copybatch1()
+Call Test_If_File_Is_Open
+Call Sheet_Test
+Call countnumbersincolumna
+Call locaterow
+Call locatecolumnofnumber
+Call locatecolumnofDelivery
+'below is the position in the first dimension of the array
+a = 1
+Call ArtNoToArray
+Call pastearrayintobatch1
+Call fandrtosap
+Call datasortbatch1
+End Sub
+Sub copybatch2()
+Call Test_If_File_Is_Open
+Call Sheet_Test
+Call countnumbersincolumna
+Call locaterow
+Call locatecolumnofnumber
+Call locatecolumnofDelivery
+'below is the position in the first dimension of the array
+a = 1
+Call ArtNoToArray
+Call pastearrayintobatch2
+Call fandrtosap
+Call datasortbatch2
+End Sub
+Sub copybatch3()
+Call Test_If_File_Is_Open
+Call Sheet_Test
+Call countnumbersincolumna
+Call locaterow
+Call locatecolumnofnumber
+Call locatecolumnofDelivery
+'below is the position in the first dimension of the array
+a = 1
+Call ArtNoToArray
+Call pastearrayintobatch3
+Call fandrtosap
+Call datasortbatch3
+End Sub
+Sub copybatch4()
+Call Test_If_File_Is_Open
+Call Sheet_Test
+Call countnumbersincolumna
+Call locaterow
+Call locatecolumnofnumber
+Call locatecolumnofDelivery
+'below is the position in the first dimension of the array
+a = 1
+Call ArtNoToArray
+Call pastearrayintobatch4
+Call fandrtosap
+Call datasortbatch4
+End Sub
+Sub copybatch5()
+Call Test_If_File_Is_Open
+Call Sheet_Test
+Call countnumbersincolumna
+Call locaterow
+Call locatecolumnofnumber
+Call locatecolumnofDelivery
+'below is the position in the first dimension of the array
+a = 1
+Call ArtNoToArray
+Call pastearrayintobatch5
+Call fandrtosap
+Call datasortbatch5
 End Sub
 Sub Test_If_File_Is_Open() 'Exits if overall.xlsx does not exist
     Dim TestWorkbook As Workbook
@@ -53,19 +123,6 @@ e = 0
         End If
     Loop
 End Sub
-Sub locatecolumn()
-Range("a1").Select
-ActiveCell.Offset(e, 0).Select
-d = 0  'this counts how far to right Number is
-    Do Until (ActiveCell.Value = "Number")
-            ActiveCell.Offset(0, 1).Select
-            d = d + 1
-            If d >= 20 Then
-            MsgBox "The heading 'Number' must be aligned with the heading 'Art no.'"
-                End
-            End If
-    Loop
-End Sub
 Sub locatecolumnofDelivery()
 Range("a1").Select
 ActiveCell.Offset(e, 0).Select
@@ -84,6 +141,19 @@ Range("a1").Select
 counter1 = Range("A" & Rows.Count).End(xlUp).Row - e
 End Sub
 Sub locatecolumnofnumber()
+Range("a1").Select
+ActiveCell.Offset(e, 0).Select
+d = 0  'this counts how far to right Number is
+    Do Until (ActiveCell.Value = "Number")
+            ActiveCell.Offset(0, 1).Select
+            d = d + 1
+            If d >= 20 Then
+            MsgBox "The heading 'Number' must be aligned with the heading 'Art no.'"
+                End
+            End If
+    Loop
+End Sub
+Sub locatecolumn()
 Range("a1").Select
 ActiveCell.Offset(e, 0).Select
 d = 0  'this counts how far to right Number is
@@ -153,6 +223,91 @@ For i = 1 To a
     ActiveCell.Offset(1, 0).Select
     Next i
 End Sub
+Sub pastearrayintobatch1()
+Dim i As Integer
+i = 1
+Workbooks("overall.xlsx").Activate
+Range("f2").Select
+For i = 1 To a
+        'exit if a position in the array is empty
+        If IsEmpty(myarray(i, 1)) = True Then
+        Exit Sub
+        End If
+    ActiveCell.Value = myarray(i, 1)
+    ActiveCell.Offset(0, 1).Value = myarray(i, 2)
+    ActiveCell.Offset(0, 2).Value = myarray(i, 3)
+    ActiveCell.Offset(0, 3).Value = myarray(i, 4)
+    ActiveCell.Offset(1, 0).Select
+    Next i
+End Sub
+Sub pastearrayintobatch2()
+Dim i As Integer
+i = 1
+Workbooks("overall.xlsx").Activate
+Range("k2").Select
+For i = 1 To a
+        'exit if a position in the array is empty
+        If IsEmpty(myarray(i, 1)) = True Then
+        Exit Sub
+        End If
+    ActiveCell.Value = myarray(i, 1)
+    ActiveCell.Offset(0, 1).Value = myarray(i, 2)
+    ActiveCell.Offset(0, 2).Value = myarray(i, 3)
+    ActiveCell.Offset(0, 3).Value = myarray(i, 4)
+    ActiveCell.Offset(1, 0).Select
+    Next i
+End Sub
+Sub pastearrayintobatch3()
+Dim i As Integer
+i = 1
+Workbooks("overall.xlsx").Activate
+Range("o2").Select
+For i = 1 To a
+        'exit if a position in the array is empty
+        If IsEmpty(myarray(i, 1)) = True Then
+        Exit Sub
+        End If
+    ActiveCell.Value = myarray(i, 1)
+    ActiveCell.Offset(0, 1).Value = myarray(i, 2)
+    ActiveCell.Offset(0, 2).Value = myarray(i, 3)
+    ActiveCell.Offset(0, 3).Value = myarray(i, 4)
+    ActiveCell.Offset(1, 0).Select
+    Next i
+End Sub
+Sub pastearrayintobatch4()
+Dim i As Integer
+i = 1
+Workbooks("overall.xlsx").Activate
+Range("t2").Select
+For i = 1 To a
+        'exit if a position in the array is empty
+        If IsEmpty(myarray(i, 1)) = True Then
+        Exit Sub
+        End If
+    ActiveCell.Value = myarray(i, 1)
+    ActiveCell.Offset(0, 1).Value = myarray(i, 2)
+    ActiveCell.Offset(0, 2).Value = myarray(i, 3)
+    ActiveCell.Offset(0, 3).Value = myarray(i, 4)
+    ActiveCell.Offset(1, 0).Select
+    Next i
+End Sub
+Sub pastearrayintobatch5()
+Dim i As Integer
+i = 1
+Workbooks("overall.xlsx").Activate
+Range("y2").Select
+For i = 1 To a
+        'exit if a position in the array is empty
+        If IsEmpty(myarray(i, 1)) = True Then
+        Exit Sub
+        End If
+    ActiveCell.Value = myarray(i, 1)
+    ActiveCell.Offset(0, 1).Value = myarray(i, 2)
+    ActiveCell.Offset(0, 2).Value = myarray(i, 3)
+    ActiveCell.Offset(0, 3).Value = myarray(i, 4)
+    ActiveCell.Offset(1, 0).Select
+    Next i
+End Sub
 Sub fandrtosap()
 Cells.Replace What:="PU", Replacement:="PAC", LookAt:=xlPart, _
         SearchOrder:=xlByRows, MatchCase:=True
@@ -169,10 +324,10 @@ Sub datasort()
     Range(Selection, Selection.End(xlDown)).Select
     ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Clear
     ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Add Key _
-        :=Range("a1:a1000"), SortOn:=xlSortOnValues, Order:=xlAscending, _
+        :=Range("a2:a1000"), SortOn:=xlSortOnValues, Order:=xlAscending, _
         DataOption:=xlSortNormal
     With ActiveWorkbook.Worksheets("Sheet1").Sort
-        .SetRange Range("a1:d1000")
+        .SetRange Range("a2:d1000")
         .Header = xlNo
         .MatchCase = False
         .Orientation = xlTopToBottom
@@ -182,17 +337,95 @@ Sub datasort()
 Range("a1").Select
 End Sub
 
+Sub datasortbatch1()
+    Range("f2:i2").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Add Key _
+        :=Range("f2:f1000"), SortOn:=xlSortOnValues, Order:=xlAscending, _
+        DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Sheet1").Sort
+        .SetRange Range("f2:i1000")
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+Range("f1").Select
+End Sub
 
+Sub datasortbatch2()
+    Range("k2:n2").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Add Key _
+        :=Range("k2:k1000"), SortOn:=xlSortOnValues, Order:=xlAscending, _
+        DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Sheet1").Sort
+        .SetRange Range("k2:k1000")
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+Range("k1").Select
+End Sub
+Sub datasortbatch3()
+    Range("o2:r2").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Add Key _
+        :=Range("o2:o1000"), SortOn:=xlSortOnValues, Order:=xlAscending, _
+        DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Sheet1").Sort
+        .SetRange Range("o2:o1000")
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+Range("o1").Select
+End Sub
 
-'The assumptions are:
-'a) All numbers to be copied are 6-figures, or 9 figures and begin with "M"
-'or are between 17 and 25 characters ending in a bracket
-'b) There is not a gap of more than 30 blanks between art. numbers
-'c) a + is used to denote any special requirements in m and l contains the special data
-'d) A contains all the articles numbers J is 'quantity and K is code in sheet
-'e) This will work for up to a thousand article numbers
+Sub datasortbatch4()
+    Range("t2:w2").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Add Key _
+        :=Range("t2:t1000"), SortOn:=xlSortOnValues, Order:=xlAscending, _
+        DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Sheet1").Sort
+        .SetRange Range("t2:t1000")
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+Range("t1").Select
+End Sub
 
-'Outstanding questions:
+Sub datasortbatch5()
+    Range("y2:ab2").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Sheet1").Sort.SortFields.Add Key _
+        :=Range("y2:y1000"), SortOn:=xlSortOnValues, Order:=xlAscending, _
+        DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Sheet1").Sort
+        .SetRange Range("y2:y1000")
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+Range("y1").Select
+End Sub
+
 
 
 
